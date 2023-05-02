@@ -18,15 +18,15 @@ app.get('/', function (요청, 응답) {
 
 app.get('/product', function (요청, 응답) {
     응답.json([
-      {id:'1',name: '라면'},
-      {id:'2',name: '김치찌개'},
-      {id:'3',name: '고기덮밥'},
-      {id:'4',name: '피자'},
-      {id:'5',name: '닭강정'},
-      {id:'5',name: '권광재'},
-      {id:'5',name: '바보'},
+      {id:'1',class_name: '라면',img_url:'https://img.choroc.com/newshop/goods/013039/013039_1.jpg',price:3000},
+      {id:'2',class_name: '김치찌개',img_url:'https://img.choroc.com/newshop/goods/013039/013039_1.jpg',price:3000},
+      {id:'3',class_name: '고기덮밥',img_url:'https://img.choroc.com/newshop/goods/013039/013039_1.jpg',price:3000},
+      {id:'4',class_name: '피자',img_url:'https://img.choroc.com/newshop/goods/013039/013039_1.jpg',price:3000},
+      {id:'5',class_name: '닭강정',img_url:'https://img.choroc.com/newshop/goods/013039/013039_1.jpg',price:3000},
+      {id:'6',class_name: '권광재',img_url:'https://img.choroc.com/newshop/goods/013039/013039_1.jpg',price:3000},
+      {id:'7',class_name: '바보',img_url:'https://img.choroc.com/newshop/goods/013039/013039_1.jpg',price:3000},
 
-    ]);
+    ]); 
   });
 
 

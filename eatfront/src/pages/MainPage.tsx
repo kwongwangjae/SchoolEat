@@ -1,8 +1,9 @@
 import React from 'react'
-
+import MenuPageList from '../components/main/MenuPageList'
+import MenuList from '../components/main/MenuList'
 const MainPage = () => {
     return (
-      <div>안녕 </div>
+      <MenuPageList MenuList={MenuList}/>
     )
   }
   
