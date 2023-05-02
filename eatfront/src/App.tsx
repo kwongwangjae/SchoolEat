@@ -1,10 +1,18 @@
-import React from 'react';
-import './App.css';
+import React from 'react'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import './App.css'
+import MainPage from './pages/MainPage'
 
 function App() {
   return (
-    <div className="App">안녕하세세용</div>
-  );
+    <div className="Font">
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<MainPage />} />
+        </Routes>
+      </BrowserRouter>
+    </div>
+  )
 }
 
-export default App;
+export default App
