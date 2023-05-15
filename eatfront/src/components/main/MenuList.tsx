@@ -5,27 +5,27 @@ interface ProductCardProps {
  
   const MenuList: ProductCardProps[] = [
     {
-      title: '라면',
-      price: '1200원',
+      title: '조준영',
+      price: '1200원 아 비싸다',
     },
     {
-      title: '라면',
+      title: '바보',
       price: '900원',
     },
     {
-      title: '라면',
+      title: '멍청이',
       price: '100200원',
     },
     {
-      title: '라면',
+      title: '호구',
       price: '121230원',
     },
     {
-      title: '라면',
+      title: '찐따',
       price: '12020원',
     },
     {
-      title: '라면',
+      title: '양아치',
       price: '120원',
     },
     {

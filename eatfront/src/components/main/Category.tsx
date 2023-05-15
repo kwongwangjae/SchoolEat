@@ -4,7 +4,13 @@ import styled from 'styled-components'
 const Category = () => {
     return(
         <>
-        <Div>ABC</Div>
+        <Block>
+            <div>면류</div>
+            <div>|</div>
+            <div>밥류</div>
+            <div>|</div>
+            <div>국물류</div>
+        </Block>
         </>
     )
 }
@@ -12,6 +18,12 @@ const Category = () => {
 
 export default Category
 
-const Div = styled.div`
+const Block = styled.div`
 display: flex;
-justify-content: center;`
+justify-content: space-evenly;
+align-items: center;
+font-size: 1.3rem;
+height:3rem;
+background: #FFF6A6;
+margin-bottom:2rem;
+`

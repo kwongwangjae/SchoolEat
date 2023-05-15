@@ -23,8 +23,9 @@ import FarStar from '../main/FarStar'
 
  const TitleText = styled.div`
  display:flex;
-   font-size: 1rem;
+   font-size: 1.5rem;
    font-weight: 800;
+   margin-top:0rem;
    @media all and (max-width: 767px) {
      font-size: 1rem;
      margin-top:0;
@@ -34,9 +35,9 @@ import FarStar from '../main/FarStar'
 
  const PriceText = styled.div`
    display: flex;
-   font-size: 0.6rem;
+   font-size: 0.8rem;
    font-weight: 1000;
-   margin-top: 0.5rem;
+   margin-top: 0rem;
    @media all and (max-width: 767px) {
      font-size: 0.6rem;
      margin-top: 0;
@@ -44,9 +45,9 @@ import FarStar from '../main/FarStar'
    }
  `
  const Block = styled.div`
-   width: 15rem;
-   height: 13rem;
-   margin: 1rem 1.5rem 1rem 1.5rem;
+   width: 16.5rem;
+   height: 16rem;
+   margin: 1rem 1.5rem 3rem 1.5rem;
    border-radius: 20px;
    @media all and (min-width: 768px) and (max-width: 1023px) {
      margin: 0;
@@ -61,8 +62,8 @@ import FarStar from '../main/FarStar'
  const IMGBlock = styled.div`
    display: flex;
    justify-content: center;
-   width: 15rem;
-   height: 10rem;
+   width: 16.5rem;
+   height: 11rem;
    background: white;
    border-radius: 20px;
    padding: 0.5rem 0;
@@ -72,7 +73,7 @@ import FarStar from '../main/FarStar'
    }
  `
  const IMG = styled.img`
-   width: 15rem;
+   width: 16.5rem;
    @media all and (max-width: 767px) {
      width: 6rem;
    }
