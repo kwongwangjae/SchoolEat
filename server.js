@@ -18,13 +18,17 @@ app.get('/', function (요청, 응답) {
 
 app.get('/product', function (요청, 응답) {
     응답.json([
-      {id:'1',class_name: '라면',img_url:'https://img.choroc.com/newshop/goods/013039/013039_1.jpg',price:3000},
-      {id:'2',class_name: '김치찌개',img_url:'https://img.choroc.com/newshop/goods/013039/013039_1.jpg',price:3000},
-      {id:'3',class_name: '고기덮밥',img_url:'https://img.choroc.com/newshop/goods/013039/013039_1.jpg',price:3000},
-      {id:'4',class_name: '피자',img_url:'https://img.choroc.com/newshop/goods/013039/013039_1.jpg',price:3000},
-      {id:'5',class_name: '닭강정',img_url:'https://img.choroc.com/newshop/goods/013039/013039_1.jpg',price:3000},
-      {id:'6',class_name: '권광재',img_url:'https://img.choroc.com/newshop/goods/013039/013039_1.jpg',price:3000},
-      {id:'7',class_name: '바보',img_url:'https://img.choroc.com/newshop/goods/013039/013039_1.jpg',price:3000},
+      {id:'1',category:'noodle',class_name: '라면',img_url:'https://img.choroc.com/newshop/goods/013039/013039_1.jpg',price:3000},
+      {id:'2',category:'rice',class_name: '김치찌개',img_url:'https://img.choroc.com/newshop/goods/013039/013039_1.jpg',price:3000},
+      {id:'3',category:'rice',class_name: '고기덮밥',img_url:'https://img.choroc.com/newshop/goods/013039/013039_1.jpg',price:3000},
+      {id:'4',category:'rice',class_name: '피자',img_url:'https://img.choroc.com/newshop/goods/013039/013039_1.jpg',price:3000},
+      {id:'5',category:'rice',class_name: '닭강정',img_url:'https://img.choroc.com/newshop/goods/013039/013039_1.jpg',price:3000},
+      {id:'6',category:'noodle',class_name: '권광재',img_url:'https://img.choroc.com/newshop/goods/013039/013039_1.jpg',price:3000},
+      {id:'7',category:'noodle',class_name: '바보',img_url:'https://img.choroc.com/newshop/goods/013039/013039_1.jpg',price:3000},
+      {id:'8',category:'noodle',class_name: '호구',img_url:'https://img.choroc.com/newshop/goods/013039/013039_1.jpg',price:3000},
+      {id:'9',category:'noodle',class_name: '진따',img_url:'https://img.choroc.com/newshop/goods/013039/013039_1.jpg',price:3000},
+      {id:'10',category:'noodle',class_name: '하하',img_url:'https://img.choroc.com/newshop/goods/013039/013039_1.jpg',price:3000},
+
 
     ]); 
   });

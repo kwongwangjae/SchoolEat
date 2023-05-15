@@ -1,16 +1,15 @@
-import React from 'react'
-import MenuPageList from '../components/main/MenuPageList'
-import MenuList from '../components/main/MenuList'
-import HeaderTop from '../components/header/HeaderTop'
-import Category from '../components/main/Category'
+import React from "react";
+import HeaderTop from "../components/header/HeaderTop";
+import Category from "../components/main/Category";
+import MenuPageList from "../components/main/MenuPageList";
 const MainPage = () => {
-    return (
-      <>
-      <HeaderTop/>
-      <Category/>
-      <MenuPageList MenuList={MenuList}/>
-      </>
-    )
-  }
-  
-  export default MainPage
+  return (
+    <>
+      <HeaderTop />
+      <Category />
+      <MenuPageList />
+    </>
+  );
+};
+
+export default MainPage;

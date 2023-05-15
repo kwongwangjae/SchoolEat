@@ -1,6 +1,6 @@
-import React from 'react'
-import Header from './HeaderTop'
-import styled, { createGlobalStyle } from 'styled-components'
+import React from "react";
+import Header from "./HeaderTop";
+import styled, { createGlobalStyle } from "styled-components";
 
 const NotFound = () => {
   return (
@@ -9,10 +9,10 @@ const NotFound = () => {
       <Header />
       <Text>404: 페이지를 찾을 수 없습니다.</Text>
     </div>
-  )
-}
+  );
+};
 
-export default NotFound
+export default NotFound;
 
 const Text = styled.div`
   display: flex;
@@ -20,10 +20,10 @@ const Text = styled.div`
   align-items: center;
   margin-top: 5rem;
   font-size: 1.5rem;
-`
+`;
 
 const NotFoundPageStyle = createGlobalStyle`
   body {
     background-color: #ff9668;
   }
-`
+`;
