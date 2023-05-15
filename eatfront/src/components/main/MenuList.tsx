@@ -5,45 +5,54 @@ interface ProductCardProps {
  
   const MenuList: ProductCardProps[] = [
     {
-      title: '월드콘',
+      title: '라면',
       price: '1200원',
     },
     {
-      title: '구구콘',
+      title: '라면',
       price: '900원',
     },
     {
-      title: '나나콘',
+      title: '라면',
       price: '100200원',
     },
     {
-      title: '아드콘',
+      title: '라면',
       price: '121230원',
     },
     {
-      title: '이디콘',
+      title: '라면',
       price: '12020원',
     },
     {
-      title: '마마콘',
+      title: '라면',
       price: '120원',
     },
     {
-      title: '라라콘',
+      title: '라면',
       price: '10원',
     },
     {
-      title: '키키콘',
+      title: '라면',
       price: '200원',
     },
     {
-      title: '락학콘',
+      title: '라면',
       price: '12080원',
     },
     {
-      title: '히히콘',
+      title: '라면',
       price: '12070원',
     },
+    {
+      title: '라면',
+      price: '12070원',
+    },
+    {
+      title: '라면',
+      price: '12070원',
+    },
+    
   ]
  
   export default MenuList
