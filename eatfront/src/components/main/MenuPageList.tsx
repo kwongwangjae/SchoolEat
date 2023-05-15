@@ -27,5 +27,6 @@ import styled from 'styled-components'
  const Div = styled.div`
    display: flex;
    flex-flow: row wrap;
+   margin: 1rem 8rem 1rem 8rem;
    justify-content: space-evenly;
  `

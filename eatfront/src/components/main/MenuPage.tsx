@@ -44,9 +44,9 @@ import FarStar from '../main/FarStar'
    }
  `
  const Block = styled.div`
-   width: 13.5rem;
+   width: 15rem;
    height: 13rem;
-   margin: 1rem 4rem 1rem 4rem;
+   margin: 1rem 1.5rem 1rem 1.5rem;
    border-radius: 20px;
    @media all and (min-width: 768px) and (max-width: 1023px) {
      margin: 0;
@@ -61,7 +61,7 @@ import FarStar from '../main/FarStar'
  const IMGBlock = styled.div`
    display: flex;
    justify-content: center;
-   width: 13.5rem;
+   width: 15rem;
    height: 10rem;
    background: white;
    border-radius: 20px;
@@ -72,7 +72,7 @@ import FarStar from '../main/FarStar'
    }
  `
  const IMG = styled.img`
-   width: 13.5rem;
+   width: 15rem;
    @media all and (max-width: 767px) {
      width: 6rem;
    }
