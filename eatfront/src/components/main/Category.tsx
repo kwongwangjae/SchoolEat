@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { Link } from 'react-router-dom';
 
 const Category = () => {
     return(
@@ -7,7 +8,7 @@ const Category = () => {
         <Block>
             <div>면류</div>
             <div>|</div>
-            <div>밥류</div>
+            <Link to="/Rice" style={{ textDecoration: 'none' }}><Div>밥류</Div></Link>
             <div>|</div>
             <div>국물류</div>
         </Block>
@@ -26,4 +27,8 @@ font-size: 1.3rem;
 height:3rem;
 background: #FFF6A6;
 margin-bottom:2rem;
+`
+const Div = styled.div`
+display: flex;
+color: black;
 `
