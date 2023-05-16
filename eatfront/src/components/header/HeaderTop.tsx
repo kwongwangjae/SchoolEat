@@ -15,7 +15,9 @@ const Header = () => {
           </Name>
         </Link>
         <IconSize>
-          <HiOutlineLockClosed />
+          <Link to="/Login" style={{ textDecoration: "none" }}>
+            <HiOutlineLockClosed />
+          </Link>
         </IconSize>
       </Block>
     </>

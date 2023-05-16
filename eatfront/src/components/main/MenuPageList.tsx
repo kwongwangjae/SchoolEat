@@ -12,17 +12,19 @@ export interface Data {
   category: string;
   class_name: string;
   img_url: string;
-  price: string;
+  price: number;
 }
 
 const MenuPageList = () => {
-  const [data, setdata] = useState<Data[]>();
+  const [data, setdata] = useState<Data[]>([]);
 
   const fetchData = async () => {
     try {
-      const response = await axios.get<Response>(`/product`);
-      const { data: responsedata } = response.data;
-      setdata(responsedata);
+      const response = await axios.get<Response>(
+        `http://localhost:4000/product`
+      );
+      const { data } = response.data;
+      setdata(data);
     } catch (err) {
       console.log(err);
     }
@@ -30,16 +32,11 @@ const MenuPageList = () => {
 
   useEffect(() => {
     fetchData();
-    window.scrollTo(0, 0);
   }, []);
 
   return (
     <Div>
-      {data ? (
-        data.map((data) => <MenuPage key={data.id} data={data} />)
-      ) : (
-        <div>Loading...</div>
-      )}
+      {data && data.map((data) => <MenuPage key={data.id} data={data} />)}
     </Div>
   );
 };

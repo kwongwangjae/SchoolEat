@@ -4,6 +4,7 @@ import "./App.css";
 import MainPage from "./pages/MainPage";
 import NotFound from "./components/header/NotFound";
 import CategoryPage from "./pages/CategoryPage";
+import LoginPage from "./pages/LoginPage";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
           <Route path="/*" element={<NotFound />} />
           <Route path="/" element={<MainPage />} />
           <Route path="/Rice" element={<CategoryPage />} />
+          <Route path="/Login" element={<LoginPage />} />
         </Routes>
       </BrowserRouter>
     </div>

@@ -7,7 +7,7 @@ interface MenuPageProps {
   category: string;
   class_name: string;
   img_url: string;
-  price: string;
+  price: number;
 }
 
 const MenuPage = ({ data }: { data: MenuPageProps }) => {
