@@ -18,19 +18,19 @@ export interface Data {
 const MenuPageList = () => {
   const [data, setdata] = useState<Data[]>([]);
 
-  const fetchData = async () => {
-    try {
-      const response = await axios.get<Response>(
-        `http://localhost:4000/product`
-      );
-      const { data } = response.data;
-      setdata(data);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get<Response>(
+          `http://localhost:4000/product`
+        );
+        const { data } = response.data;
+        setdata(data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
     fetchData();
   }, []);
 

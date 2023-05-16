@@ -39,10 +39,11 @@ const IconSize = styled.div`
   font-size: 3rem;
   display: flex;
   justify-content: center;
-  margin: 0.2rem 0rem 0.2rem 0rem;
+  align-items: center;
+  margin: 0rem 0rem 0rem 0rem;
 `;
 const IMG = styled.img`
-  width: 7rem;
+  width: 7.2rem;
   margin: 0.2rem 0rem 0.2rem 0rem;
 `;
 const Block = styled.div`

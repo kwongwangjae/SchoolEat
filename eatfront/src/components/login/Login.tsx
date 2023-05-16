@@ -26,7 +26,7 @@ const login = () => {
               <Link to="/">
                 <LoginButton>로그인</LoginButton>
               </Link>
-              <Link to="/">
+              <Link to="/Membership">
                 <CheckButton>회원가입</CheckButton>
               </Link>
             </LoginCheck>
