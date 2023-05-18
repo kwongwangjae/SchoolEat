@@ -1,27 +1,33 @@
-import React from 'react'
-import styled from 'styled-components'
-import ramen from '../../images/013039_1.jpg'
-import FarStar from '../main/FarStar'
- const MenuPage = ({ title, price }: { title: string; price: string }) => {
-   return (
-    <>
-     <div>
-       <Block>
-         <IMGBlock>
-           <IMG src={ramen}/>
-         </IMGBlock>
-         <FarStar></FarStar>
-         <TitleText>{title}</TitleText>
-         <PriceText>{price}</PriceText>
-       </Block>
-     </div>
-     </>
-   )
- }
+import React from "react";
+import styled from "styled-components";
+import FarStar from "../main/FarStar";
 
- export default MenuPage
+interface MenuPageProps {
+  id: number;
+  category: string;
+  class_name: string;
+  img_url: string;
+  price: number;
+}
 
- const TitleText = styled.div`
+const MenuPage = ({ data }: { data: MenuPageProps }) => {
+  return (
+    <div>
+      <Block>
+        <IMGBlock>
+          <IMG src={data.img_url} />
+        </IMGBlock>
+        <FarStar></FarStar>
+        <TitleText>{data.class_name}</TitleText>
+        <PriceText>{data.price}</PriceText>
+      </Block>
+    </div>
+  );
+};
+
+export default MenuPage;
+
+const TitleText = styled.div`
  display:flex;
    font-size: 1.5rem;
    font-weight: 800;
@@ -31,50 +37,50 @@ import FarStar from '../main/FarStar'
      margin-top:0;
      margin-top:0.5rem;
 
- `
+ `;
 
- const PriceText = styled.div`
-   display: flex;
-   font-size: 0.8rem;
-   font-weight: 1000;
-   margin-top: 0rem;
-   @media all and (max-width: 767px) {
-     font-size: 0.6rem;
-     margin-top: 0;
-     margin-top: 0.3rem;
-   }
- `
- const Block = styled.div`
-   width: 16.5rem;
-   height: 16rem;
-   margin: 1rem 1.5rem 3rem 1.5rem;
-   border-radius: 20px;
-   @media all and (min-width: 768px) and (max-width: 1023px) {
-     margin: 0;
-     margin: 0.5rem 2rem 0.5rem 2rem;
-   }
-   @media all and (max-width: 767px) {
-     width: 8rem;
-     height: 17rem;
-     margin: 0;
-   }
- `
- const IMGBlock = styled.div`
-   display: flex;
-   justify-content: center;
-   width: 16.5rem;
-   height: 11rem;
-   background: white;
-   border-radius: 20px;
-   padding: 0.5rem 0;
-   @media all and (max-width: 767px) {
-     width: 8rem;
-     height: 10rem;
-   }
- `
- const IMG = styled.img`
-   width: 16.5rem;
-   @media all and (max-width: 767px) {
-     width: 6rem;
-   }
- `
+const PriceText = styled.div`
+  display: flex;
+  font-size: 0.8rem;
+  font-weight: 1000;
+  margin-top: 0rem;
+  @media all and (max-width: 767px) {
+    font-size: 0.6rem;
+    margin-top: 0;
+    margin-top: 0.3rem;
+  }
+`;
+const Block = styled.div`
+  width: 16.5rem;
+  height: 16rem;
+  margin: 1rem 1.5rem 3rem 1.5rem;
+  border-radius: 20px;
+  @media all and (min-width: 768px) and (max-width: 1023px) {
+    margin: 0;
+    margin: 0.5rem 2rem 0.5rem 2rem;
+  }
+  @media all and (max-width: 767px) {
+    width: 8rem;
+    height: 17rem;
+    margin: 0;
+  }
+`;
+const IMGBlock = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 16.5rem;
+  height: 11rem;
+  background: white;
+  border-radius: 20px;
+  padding: 0.5rem 0;
+  @media all and (max-width: 767px) {
+    width: 8rem;
+    height: 10rem;
+  }
+`;
+const IMG = styled.img`
+  width: 16.5rem;
+  @media all and (max-width: 767px) {
+    width: 6rem;
+  }
+`;
