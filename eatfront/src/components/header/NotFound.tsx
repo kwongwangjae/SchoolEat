@@ -7,6 +7,7 @@ const NotFound = () => {
     <div>
       <NotFoundPageStyle />
       <Header />
+      <Tag />
       <Text>404: 페이지를 찾을 수 없습니다.</Text>
     </div>
   );
@@ -24,6 +25,15 @@ const Text = styled.div`
 
 const NotFoundPageStyle = createGlobalStyle`
   body {
-    background-color: #ff9668;
   }
+`;
+
+const Tag = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  font-size: 1.3rem;
+  height: 3rem;
+  background: #fff6a6;
+  margin-bottom: 2rem;
 `;
