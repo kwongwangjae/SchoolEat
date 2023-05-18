@@ -108,8 +108,6 @@ const LoginCheck = styled.div`
 const Check = styled.div``;
 
 const LoginButton = styled.button`
-  align-items: center;
-  justify-content: center;
   font-style: normal;
   font-weight: 700;
   font-size: 1.5rem;
@@ -120,8 +118,6 @@ const LoginButton = styled.button`
   border: 0;
 `;
 const CheckButton = styled.button`
-  align-items: center;
-  justify-content: center;
   font-style: normal;
   font-weight: 700;
   font-size: 1.5rem;
