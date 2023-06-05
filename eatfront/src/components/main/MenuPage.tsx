@@ -3,22 +3,24 @@ import styled from "styled-components";
 import FarStar from "../main/FarStar";
 
 interface MenuPageProps {
-  id: number;
-  category: string;
-  class_name: string;
-  img_url: string;
+  menu_id: number;
+  NAME: string;
+  category: number;
   price: number;
+  image: string;
 }
 
 const MenuPage = ({ data }: { data: MenuPageProps }) => {
+  console.log("돌아감 내 대가리가 ");
+  console.log(data);
   return (
     <div>
       <Block>
         <IMGBlock>
-          <IMG src={data.img_url} />
+          <IMG src={data.image} />
         </IMGBlock>
         <FarStar></FarStar>
-        <TitleText>{data.class_name}</TitleText>
+        <TitleText>{data.NAME}</TitleText>
         <PriceText>{data.price}</PriceText>
       </Block>
     </div>

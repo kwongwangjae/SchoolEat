@@ -1,33 +1,34 @@
 import React, { useState, useEffect } from "react";
-import MenuPage from "./MenuPage";
 import axios from "axios";
 import styled from "styled-components";
+import MenuPage from "../main/MenuPage";
 
 interface Response {
   data: Data[];
 }
 
 export interface Data {
-  id: number;
-  category: string;
-  class_name: string;
-  img_url: string;
+  menu_id: number;
+  NAME: string;
+  category: number;
   price: number;
+  image: string;
 }
 
 const MenuPageList = () => {
-  const [data, setdata] = useState<Data[]>([]);
+  const [data, setData] = useState<Data[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get<Response>(
-          `http://localhost:4000/product`
+          `http://localhost:3001/api/data`
         );
-        const { data } = response.data;
-        setdata(data);
-      } catch (err) {
-        console.log(err);
+        const responseData = response.data.data; // 응답 데이터에서 필요한 데이터 추출
+        setData(responseData); // 데이터 업데이트
+        console.log("데이터 업데이트 완료");
+      } catch (error) {
+        console.log(error);
       }
     };
 
@@ -35,9 +36,12 @@ const MenuPageList = () => {
   }, []);
 
   return (
-    <Div>
-      {data && data.map((data) => <MenuPage key={data.id} data={data} />)}
-    </Div>
+    <>
+      <Div>
+        {data &&
+          data.map((item) => <MenuPage key={item.menu_id} data={item} />)}
+      </Div>
+    </>
   );
 };
 
