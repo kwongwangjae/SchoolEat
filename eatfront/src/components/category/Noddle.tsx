@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import MenuPage from "../main/MenuPage";
+import Category from "../main/Category";
 
 export interface Data {
   menu_id: number;
@@ -10,7 +11,7 @@ export interface Data {
   image: string;
 }
 
-const MenuPageList = () => {
+const Noodle = () => {
   const [data, setData] = useState<Data[]>([]);
 
   useEffect(() => {
@@ -18,7 +19,7 @@ const MenuPageList = () => {
   }, []);
 
   const fetchData = () => {
-    fetch("/api/data")
+    fetch("/api/data?category=1")
       .then((response) => response.json())
       .then((data) => {
         setData(data);
@@ -30,15 +31,18 @@ const MenuPageList = () => {
   };
 
   return (
-    <Div>
-      {data.map((item) => (
-        <MenuPage key={item.menu_id} data={item} />
-      ))}
-    </Div>
+    <>
+      <Category />
+      <Div>
+        {data.map((item) => (
+          <MenuPage key={item.menu_id} data={item} />
+        ))}
+      </Div>
+    </>
   );
 };
 
-export default MenuPageList;
+export default Noodle;
 
 const Div = styled.div`
   display: flex;

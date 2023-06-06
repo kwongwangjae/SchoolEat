@@ -160,10 +160,16 @@ app.get("/menu/:menuId/averageRating", (req, res) => {
 
 // 데이터조회 API
 app.get("/api/data", (req, res) => {
-  const { type } = req.query;
+  const { category } = req.query;
 
   // 쿼리 실행
-  const query = `SELECT * FROM menus;`;
+  let query = "SELECT * FROM menus";
+
+  //카테고리 형식 나누기
+  if (category) {
+    query += ` WHERE category = ${category}`;
+  }
+
   connection.query(query, (err, results) => {
     if (err) {
       console.error(err);

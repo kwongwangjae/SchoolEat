@@ -1,8 +1,51 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-const login = () => {
+const Login = () => {
+  const [studentNumber, setStudentNumber] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleLogin = (event: any) => {
+    event.preventDefault();
+
+    const requestBody = {
+      student_number: studentNumber,
+      student_password: password,
+    };
+
+    fetch("/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(requestBody),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        // 로그인 성공 시 토스트 메시지 출력 후 mainpage로 이동
+        showToast("로그인에 성공하였습니다.");
+      })
+      .catch((error) => {
+        console.error("로그인 오류", error);
+        // 로그인 실패 시 토스트 메시지 출력
+        showToast("로그인에 실패하였습니다.");
+      });
+  };
+
+  const handleStudentNumberChange = (event: any) => {
+    setStudentNumber(event.target.value);
+  };
+
+  const handlePasswordChange = (event: any) => {
+    setPassword(event.target.value);
+  };
+
+  const showToast = (message: any) => {
+    alert(message);
+  };
+
   return (
     <>
       <Tag />
@@ -10,26 +53,35 @@ const login = () => {
         <Div>
           로그인
           <LoginBlock>
-            <Text>
-              가입하신 <RedText>학번</RedText>으로 로그인 하세요.
-              <Line />
-            </Text>
-            <LoginCheck>
-              <Check>
-                <InputId placeholder="아이디(학번)을 입력하세요" />
-                <div />
-                <InputPassword
-                  type="password"
-                  placeholder="비밀번호를 입력하세요"
-                />
-              </Check>
-              <Link to="/">
-                <LoginButton>로그인</LoginButton>
-              </Link>
-              <Link to="/Membership">
-                <CheckButton>회원가입</CheckButton>
-              </Link>
-            </LoginCheck>
+            {/* 로그인 폼 */}
+            <form onSubmit={handleLogin}>
+              <Text>
+                가입하신 <RedText>학번</RedText>으로 로그인 하세요.
+                <Line />
+              </Text>
+              <LoginCheck>
+                <Check>
+                  <InputId
+                    placeholder="아이디(학번)을 입력하세요"
+                    value={studentNumber}
+                    onChange={handleStudentNumberChange}
+                  />
+                  <div />
+                  <InputPassword
+                    type="password"
+                    placeholder="비밀번호를 입력하세요"
+                    value={password}
+                    onChange={handlePasswordChange}
+                  />
+                </Check>
+                <Link to="/">
+                  <LoginButton type="submit">로그인</LoginButton>
+                </Link>
+                <Link to="/Membership">
+                  <CheckButton>회원가입</CheckButton>
+                </Link>
+              </LoginCheck>
+            </form>
           </LoginBlock>
         </Div>
       </Block>
@@ -37,7 +89,7 @@ const login = () => {
   );
 };
 
-export default login;
+export default Login;
 
 const Tag = styled.div`
   display: flex;

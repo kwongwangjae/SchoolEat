@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import ramen from "../../images/013039_1.jpg";
 import FarStar from "../main/FarStar";
+
 const Review = () => {
   const [review, setReview] = useState("");
   const [reviewList, setReviewList] = useState<string[]>([]);

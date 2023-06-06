@@ -11,8 +11,6 @@ interface MenuPageProps {
 }
 
 const MenuPage = ({ data }: { data: MenuPageProps }) => {
-  console.log("돌아감 내 대가리가 ");
-  console.log(data);
   return (
     <div>
       <Block>
