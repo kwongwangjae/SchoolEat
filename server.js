@@ -38,13 +38,13 @@ app.post("/login", (req, res) => {
   connection.query(query, (err, results) => {
     if (err) {
       console.err("로그인 오류", err);
-      res.status(500).send("로그인 오류");
+      res.status(500).json("로그인 오류");
       return;
     }
 
     if (results.length === 0) {
       // 학번이 일치하지 않을 때
-      res.status(401).send("해당 학번의 사용자를 찾을 수 없습니다.");
+      res.status(401).json("해당 학번의 사용자를 찾을 수 없습니다.");
       return;
     }
 
@@ -52,7 +52,7 @@ app.post("/login", (req, res) => {
 
     if (user.password !== student_password) {
       // 비밀번호가 일치하지 않을 때
-      res.status(401).send("비밀번호가 일치하지 않습니다.");
+      res.status(401).json("비밀번호가 일치하지 않습니다.");
       return;
     }
 
@@ -60,7 +60,7 @@ app.post("/login", (req, res) => {
     req.session.student_number = student_number;
 
     // 로그인 성공 시
-    res.send("로그인 성공!");
+    res.json("로그인 성공!");
   });
 });
 
@@ -89,12 +89,12 @@ app.post("/signup", (req, res) => {
   connection.query(query, (err, result) => {
     if (err) {
       console.error("회원가입 오류", err);
-      res.status(500).send("회원가입 오류");
+      res.status(500).json({ error: "회원가입 오류" });
       return;
     }
 
     // 회원가입 성공
-    res.send("회원가입 성공");
+    res.json({ message: "회원가입 성공" });
   });
 });
 

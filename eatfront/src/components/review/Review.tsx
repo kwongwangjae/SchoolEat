@@ -1,8 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import ramen from "../../images/013039_1.jpg";
 import FarStar from "../main/FarStar";
 const Review = () => {
+  const [review, setReview] = useState("");
+  const [reviewList, setReviewList] = useState<string[]>([]);
+  const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setReview(event.target.value);
+  };
+
+  const handleSaveReview = () => {
+    if (review.trim() !== "") {
+      setReviewList([...reviewList, review]);
+      setReview("");
+    }
+  };
+
   return (
     <>
       <Tag />
@@ -17,9 +30,24 @@ const Review = () => {
           <CategoryBox>메뉴카테고리로 돌아가기</CategoryBox>
         </ImgBlock>
         <ReviewBlock>
+          <ReviewList>
+            {reviewList.map((item, index) => (
+              <ReviewBox key={index}>
+                <ID></ID>
+                <ReviewTextBox>{item}</ReviewTextBox>
+              </ReviewBox>
+            ))}
+          </ReviewList>
           <ReviewBox>
             <ID></ID>
-            <ReviewTextBox>처음 먹은 메뉴인데 진짜 맛있었습니다~</ReviewTextBox>
+            <ComentBlock>
+              <ReviewInput
+                placeholder="후기를 입력하세요."
+                value={review}
+                onChange={handleChange}
+              />
+              <Button onClick={handleSaveReview}>등록</Button>
+            </ComentBlock>
           </ReviewBox>
         </ReviewBlock>
       </Block>
@@ -56,6 +84,8 @@ const ImgBlock = styled.div`
 const ReviewBlock = styled.div`
   display: flex;
   justify-content: center;
+  flex-direction: column;
+  margin-left: 3rem;
   width: 50rem;
   height: 40rem;
 `;
@@ -104,7 +134,14 @@ const ReviewBox = styled.div`
   width: 45rem;
   height: 7rem;
   background: #ecebeb;
-  margin-top: 2rem;
+  margin-top: 1rem;
+`;
+
+const ReviewList = styled.div`
+  margin-top: 1rem;
+  width: 45rem;
+  height: 35rem;
+  overflow-y: scroll;
 `;
 
 const ReviewTextBox = styled.div`
@@ -114,6 +151,31 @@ const ReviewTextBox = styled.div`
   background: #ffffff;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border: 1px white;
+`;
+
+const ReviewInput = styled.textarea`
+  display: flex;
+  width: 35rem;
+  height: 3.5rem;
+  background: #ffffff;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border: 1px white;
+`;
+
+const Button = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 1rem;
+  width: 4rem;
+  height: 4rem;
+  background: #fff6a6;
+  border: 1px white;
+`;
+
+const ComentBlock = styled.div`
+  display: flex;
+  position: absolute;
 `;
 
 const ID = styled.div``;
