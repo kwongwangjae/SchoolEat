@@ -1,8 +1,47 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 const Membership = () => {
+  const [studentNumber, setStudentNumber] = useState("");
+  const [password, setPassword] = useState("");
+  const [nickname, setNickname] = useState("");
+
+  const handleSignUp = () => {
+    const requestBody = {
+      student_number: studentNumber,
+      password: password,
+    };
+
+    fetch("/signup", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(requestBody),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        // 회원가입 성공 처리
+      })
+      .catch((error) => {
+        console.error("회원가입 오류", error);
+        // 회원가입 실패 처리
+      });
+  };
+
+  const handleStudentNumberChange = (event: any) => {
+    setStudentNumber(event.target.value);
+  };
+
+  const handlePasswordChange = (event: any) => {
+    setPassword(event.target.value);
+  };
+
+  const handleNicknameChange = (event: any) => {
+    setNickname(event.target.value);
+  };
   return (
     <>
       <Tag />
@@ -12,14 +51,28 @@ const Membership = () => {
           <LoginBlock>
             <LoginCheck>
               <Check>
-                <InputId placeholder="아이디(학번)을 입력하세요" />
+                <InputId
+                  placeholder="아이디(학번)을 입력하세요"
+                  value={studentNumber}
+                  onChange={handleStudentNumberChange}
+                />
                 <div />
-                <InputPassword placeholder="비밀번호를 입력하세요" />
+                <InputPassword
+                  placeholder="비밀번호를 입력하세요"
+                  value={password}
+                  onChange={handlePasswordChange}
+                />
                 <div />
-                <InputNickname placeholder="닉네임을 입력하세요" />
+                <InputNickname
+                  placeholder="닉네임을 입력하세요"
+                  value={nickname}
+                  onChange={handleNicknameChange}
+                />
               </Check>
               <Link to="/Login">
-                <MembershipButton>가입하기</MembershipButton>
+                <MembershipButton onClick={handleSignUp}>
+                  가입하기
+                </MembershipButton>
               </Link>
             </LoginCheck>
           </LoginBlock>

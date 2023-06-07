@@ -1,0 +1,7 @@
+{
+  "host": "management-tutorial.cbwccwrau9q5.us-east-2.rds.amazonaws.com",
+  "user": "user",
+  "password": "Dnjswns032!@#",
+  "port": "3306",
+  "database": "student_cafe"
+}

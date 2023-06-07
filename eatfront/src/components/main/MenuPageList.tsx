@@ -1,42 +1,42 @@
 import React, { useState, useEffect } from "react";
-import MenuPage from "./MenuPage";
-import axios from "axios";
 import styled from "styled-components";
-
-interface Response {
-  data: Data[];
-}
+import MenuPage from "../main/MenuPage";
+import { Link } from "react-router-dom";
 
 export interface Data {
-  id: number;
-  category: string;
-  class_name: string;
-  img_url: string;
+  menu_id: number;
+  NAME: string;
+  category: number;
   price: number;
+  image: string;
 }
 
 const MenuPageList = () => {
-  const [data, setdata] = useState<Data[]>([]);
+  const [data, setData] = useState<Data[]>([]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get<Response>(
-          `http://localhost:4000/product`
-        );
-        const { data } = response.data;
-        setdata(data);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-
     fetchData();
   }, []);
 
+  const fetchData = () => {
+    fetch("/api/data")
+      .then((response) => response.json())
+      .then((data) => {
+        setData(data);
+      })
+      .catch((error) => {
+        console.error("데이터 조회 실패:", error);
+        // 에러 처리 로직을 추가해주세요
+      });
+  };
+
   return (
     <Div>
-      {data && data.map((data) => <MenuPage key={data.id} data={data} />)}
+      {data.map((item) => (
+        <StyledLink key={item.menu_id} to={`/review/${item.menu_id}`}>
+          <MenuPage data={item} />
+        </StyledLink>
+      ))}
     </Div>
   );
 };
@@ -48,4 +48,9 @@ const Div = styled.div`
   flex-flow: row wrap;
   margin: 1rem 8rem 1rem 8rem;
   justify-content: space-evenly;
+`;
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: black;
 `;

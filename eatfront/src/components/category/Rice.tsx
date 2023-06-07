@@ -1,13 +1,52 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import styled from "styled-components";
+import MenuPage from "../main/MenuPage";
+import Category from "../main/Category";
+
+export interface Data {
+  menu_id: number;
+  NAME: string;
+  category: number;
+  price: number;
+  image: string;
+}
 
 const Rice = () => {
+  const [data, setData] = useState<Data[]>([]);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = () => {
+    fetch("/api/data?category=2")
+      .then((response) => response.json())
+      .then((data) => {
+        setData(data);
+      })
+      .catch((error) => {
+        console.error("데이터 조회 실패:", error);
+        // 에러 처리 로직을 추가해주세요
+      });
+  };
+
   return (
     <>
-      <div>새로운 페이지 입니다.</div>
+      <Category />
+      <Div>
+        {data.map((item) => (
+          <MenuPage key={item.menu_id} data={item} />
+        ))}
+      </Div>
     </>
   );
 };
 
 export default Rice;
 
-//현재는 카테고리 페이지를 따로 만들었지만 이후에는 mainpage에서 자동으로 돌아갈 수 있게 만들 예정이다.(검색기능과 같은 형식으로 제작예정)
+const Div = styled.div`
+  display: flex;
+  flex-flow: row wrap;
+  margin: 1rem 8rem 1rem 8rem;
+  justify-content: space-evenly;
+`;

@@ -6,13 +6,17 @@ const Category = () => {
   return (
     <>
       <Block>
-        <div>면류</div>
+        <Link to="/Noodle" style={{ textDecoration: "none" }}>
+          <Div>면류</Div>
+        </Link>
         <div>|</div>
         <Link to="/Rice" style={{ textDecoration: "none" }}>
           <Div>밥류</Div>
         </Link>
         <div>|</div>
-        <div>국물류</div>
+        <Link to="/Dessert" style={{ textDecoration: "none" }}>
+          <Div>국물류</Div>
+        </Link>
       </Block>
     </>
   );
