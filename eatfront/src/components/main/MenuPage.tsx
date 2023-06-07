@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import FarStar from "../main/FarStar";
+import FarStarRating from "../main/FarStarRating";
 import { Link } from "react-router-dom";
 
 interface MenuPageProps {
@@ -20,7 +20,7 @@ const MenuPage = ({ data }: MenuPageProps) => {
         <IMGBlock>
           <IMG src={data.image} />
         </IMGBlock>
-        <FarStar></FarStar>
+        <FarStarRating menuId={data.menu_id} />
         <TitleText>{data.NAME}</TitleText>
         <PriceText>{data.price}원</PriceText>
       </Block>

@@ -35,7 +35,7 @@ const Review = () => {
 
   const fetchReviews = (menuId: any) => {
     // TODO: 메뉴 ID를 기반으로 API 호출하여 리뷰 목록을 가져오는 로직 구현
-    fetch(`/api/menu/${menuId}/reviews`)
+    fetch(`/menu/${menuId}/reviews`)
       .then((response) => {
         if (!response.ok) {
           throw new Error("리뷰 목록 조회 실패");
@@ -43,11 +43,11 @@ const Review = () => {
         return response.json();
       })
       .then((reviews) => {
-        setReviewList(reviews);
+        setReviewList(Array.isArray(reviews) ? reviews : []); // 배열로 처리
       })
       .catch((error) => {
         console.error("리뷰 목록 조회 실패:", error);
-        // 에러 처리 로직을 추가해주세요
+        setReviewList([]);
       });
   };
 

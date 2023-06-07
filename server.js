@@ -121,12 +121,11 @@ app.post("/reviews", (req, res) => {
   );
 });
 
-// 특정 메뉴의 리뷰 조회 : GET /menu/:menuId/reviews
 app.get("/menu/:menuId/reviews", (req, res) => {
   const menuId = req.params.menuId;
 
-  // 특정 메뉴에 대한 리뷰를 DB에서 조회
-  const query = `SELECT * FROM reviews WHERE menu_id = ?`;
+  // 특정 메뉴에 대한 리뷰의 content를 DB에서 조회
+  const query = `SELECT content FROM reviews WHERE menu_id = ?`;
 
   connection.query(query, [menuId], (err, results) => {
     if (err) {
@@ -134,8 +133,10 @@ app.get("/menu/:menuId/reviews", (req, res) => {
       res.status(500).json({ error: "리뷰 조회에 실패했습니다." });
     } else {
       console.log("리뷰 조회 성공");
-      // 리뷰 조회 성공
-      res.status(200).json(JSON.stringify(results));
+      // 리뷰의 content만 추출하여 배열로 변환
+      const reviewContentList = results.map((review) => review.content);
+      // 리뷰 조회 성공 및 리뷰의 content 반환
+      res.status(200).json(reviewContentList);
     }
   });
 });
