@@ -1,55 +1,35 @@
 import React from "react";
 import styled from "styled-components";
 import FarStar from "../main/FarStar";
+import { Link } from "react-router-dom";
 
 interface MenuPageProps {
-  menu_id: number;
-  NAME: string;
-  category: number;
-  price: number;
-  image: string;
+  data: {
+    menu_id: number;
+    NAME: string;
+    category: number;
+    price: number;
+    image: string;
+  };
 }
 
-const MenuPage = ({ data }: { data: MenuPageProps }) => {
+const MenuPage = ({ data }: MenuPageProps) => {
   return (
-    <div>
+    <Link to={`/review/${data.menu_id}`} style={{ textDecoration: "none" }}>
       <Block>
         <IMGBlock>
           <IMG src={data.image} />
         </IMGBlock>
         <FarStar></FarStar>
         <TitleText>{data.NAME}</TitleText>
-        <PriceText>{data.price}</PriceText>
+        <PriceText>{data.price}원</PriceText>
       </Block>
-    </div>
+    </Link>
   );
 };
 
 export default MenuPage;
 
-const TitleText = styled.div`
- display:flex;
-   font-size: 1.5rem;
-   font-weight: 800;
-   margin-top:0rem;
-   @media all and (max-width: 767px) {
-     font-size: 1rem;
-     margin-top:0;
-     margin-top:0.5rem;
-
- `;
-
-const PriceText = styled.div`
-  display: flex;
-  font-size: 0.8rem;
-  font-weight: 1000;
-  margin-top: 0rem;
-  @media all and (max-width: 767px) {
-    font-size: 0.6rem;
-    margin-top: 0;
-    margin-top: 0.3rem;
-  }
-`;
 const Block = styled.div`
   width: 16.5rem;
   height: 16rem;
@@ -65,6 +45,7 @@ const Block = styled.div`
     margin: 0;
   }
 `;
+
 const IMGBlock = styled.div`
   display: flex;
   justify-content: center;
@@ -78,9 +59,36 @@ const IMGBlock = styled.div`
     height: 10rem;
   }
 `;
+
 const IMG = styled.img`
   width: 16.5rem;
   @media all and (max-width: 767px) {
     width: 6rem;
+  }
+`;
+
+const TitleText = styled.div`
+  display: flex;
+  font-size: 1.5rem;
+  color: black;
+  font-weight: 800;
+  margin-top: 0rem;
+  @media all and (max-width: 767px) {
+    font-size: 1rem;
+    margin-top: 0;
+    margin-top: 0.5rem;
+  }
+`;
+
+const PriceText = styled.div`
+  display: flex;
+  font-size: 0.8rem;
+  font-weight: 1000;
+  color: black;
+  margin-top: 0rem;
+  @media all and (max-width: 767px) {
+    font-size: 0.6rem;
+    margin-top: 0;
+    margin-top: 0.3rem;
   }
 `;

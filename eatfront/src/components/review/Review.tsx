@@ -1,20 +1,91 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import ramen from "../../images/013039_1.jpg";
 import FarStar from "../main/FarStar";
+import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
+
+interface MenuInfo {
+  image: string;
+  NAME: string;
+}
 
 const Review = () => {
+  const { menuId } = useParams();
+  const [menuInfo, setMenuInfo] = useState<MenuInfo | null>(null);
   const [review, setReview] = useState("");
   const [reviewList, setReviewList] = useState<string[]>([]);
-  const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setReview(event.target.value);
+
+  useEffect(() => {
+    fetchMenuInfo(menuId);
+    fetchReviews(menuId);
+  }, [menuId]);
+
+  const fetchMenuInfo = (menuId: any) => {
+    // TODO: 메뉴 ID를 기반으로 API 호출하여 메뉴 정보를 가져오는 로직 구현
+    fetch(`/api/menu/${menuId}`)
+      .then((response) => response.json())
+      .then((menuInfo) => {
+        setMenuInfo(menuInfo);
+      })
+      .catch((error) => {
+        console.error("메뉴 정보 조회 실패:", error);
+        // 에러 처리 로직을 추가해주세요
+      });
   };
 
-  const handleSaveReview = () => {
+  const fetchReviews = (menuId: any) => {
+    // TODO: 메뉴 ID를 기반으로 API 호출하여 리뷰 목록을 가져오는 로직 구현
+    fetch(`/api/menu/${menuId}/reviews`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("리뷰 목록 조회 실패");
+        }
+        return response.json();
+      })
+      .then((reviews) => {
+        setReviewList(reviews);
+      })
+      .catch((error) => {
+        console.error("리뷰 목록 조회 실패:", error);
+        // 에러 처리 로직을 추가해주세요
+      });
+  };
+
+  const saveReview = () => {
     if (review.trim() !== "") {
       setReviewList([...reviewList, review]);
       setReview("");
+      const data = {
+        menu_id: menuId,
+        student_number: "", // 리뷰를 작성한 학번 정보
+        rating: 5, // 리뷰 평점
+        content: review, // 리뷰 내용
+      };
+
+      // API 호출을 통해 리뷰 등록
+      fetch("/reviews", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      })
+        .then((response) => {
+          if (response.ok) {
+            console.log("리뷰 작성 성공");
+          } else {
+            throw new Error("리뷰 작성 실패");
+          }
+        })
+        .catch((error) => {
+          console.error("리뷰 작성 실패:", error);
+          // 에러 처리 로직을 추가해주세요
+        });
     }
+  };
+
+  const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setReview(event.target.value);
   };
 
   return (
@@ -22,19 +93,24 @@ const Review = () => {
       <Tag />
       <Block>
         <ImgBlock>
-          <IMG src={ramen} />
-          <MenuText>메뉴이름</MenuText>
+          <IMG src={menuInfo?.image} alt="Menu" />
+          <MenuText>{menuInfo?.NAME}</MenuText>
           <Rating>
             <div>평균별점 </div>
             <FarStar />
           </Rating>
-          <CategoryBox>메뉴카테고리로 돌아가기</CategoryBox>
+          <Link to={`/`} style={{ textDecoration: "none" }}>
+            <CategoryBox>메뉴카테고리로 돌아가기</CategoryBox>
+          </Link>
         </ImgBlock>
         <ReviewBlock>
           <ReviewList>
             {reviewList.map((item, index) => (
               <ReviewBox key={index}>
                 <ID></ID>
+                <Block2>
+                  <FarStar />
+                </Block2>
                 <ReviewTextBox>{item}</ReviewTextBox>
               </ReviewBox>
             ))}
@@ -42,12 +118,18 @@ const Review = () => {
           <ReviewBox>
             <ID></ID>
             <ComentBlock>
+              <FarStarBlock>
+                <div>별점남기기</div>
+                <Block>
+                  <FarStar />
+                </Block>
+              </FarStarBlock>
               <ReviewInput
                 placeholder="후기를 입력하세요."
                 value={review}
                 onChange={handleChange}
               />
-              <Button onClick={handleSaveReview}>등록</Button>
+              <Button onClick={saveReview}>등록</Button>
             </ComentBlock>
           </ReviewBox>
         </ReviewBlock>
@@ -71,6 +153,12 @@ const Tag = styled.div`
 const Block = styled.div`
   display: flex;
   align-items: center;
+`;
+
+const Block2 = styled.div`
+  display: flex;
+  margin-left: 30rem;
+  margin-bottom: 0.2rem;
 `;
 
 const ImgBlock = styled.div`
@@ -152,11 +240,12 @@ const ReviewTextBox = styled.div`
   background: #ffffff;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border: 1px white;
+  margin-bottom: 1rem;
 `;
 
 const ReviewInput = styled.textarea`
   display: flex;
-  width: 35rem;
+  width: 25rem;
   height: 3.5rem;
   background: #ffffff;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -180,3 +269,11 @@ const ComentBlock = styled.div`
 `;
 
 const ID = styled.div``;
+
+const FarStarBlock = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-right: 2rem;
+`;

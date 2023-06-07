@@ -21,7 +21,7 @@ function App() {
           <Route path="/Noodle" element={<CategoryPage2 />} />
           <Route path="/Dessert" element={<CategoryPage3 />} />
           <Route path="/Login" element={<LoginPage />} />
-          <Route path="/Review" element={<ReviewPage />} />
+          <Route path="//Review/:menuId" element={<ReviewPage />} />
           <Route path="/Membership" element={<MembershipPage />} />
         </Routes>
       </BrowserRouter>

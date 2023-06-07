@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import MenuPage from "../main/MenuPage";
+import { Link } from "react-router-dom";
 
 export interface Data {
   menu_id: number;
@@ -32,7 +33,9 @@ const MenuPageList = () => {
   return (
     <Div>
       {data.map((item) => (
-        <MenuPage key={item.menu_id} data={item} />
+        <StyledLink key={item.menu_id} to={`/review/${item.menu_id}`}>
+          <MenuPage data={item} />
+        </StyledLink>
       ))}
     </Div>
   );
@@ -45,4 +48,9 @@ const Div = styled.div`
   flex-flow: row wrap;
   margin: 1rem 8rem 1rem 8rem;
   justify-content: space-evenly;
+`;
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: black;
 `;

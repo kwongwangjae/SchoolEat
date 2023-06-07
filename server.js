@@ -134,7 +134,8 @@ app.get("/menu/:menuId/reviews", (req, res) => {
       res.status(500).json({ error: "리뷰 조회에 실패했습니다." });
     } else {
       console.log("리뷰 조회 성공");
-      res.status(200).json(results);
+      // 리뷰 조회 성공
+      res.status(200).json(JSON.stringify(results));
     }
   });
 });
@@ -151,7 +152,7 @@ app.get("/menu/:menuId/averageRating", (req, res) => {
       console.error("평균 rating 점수 조회 실패: ", err);
       res.status(500).json({ error: "평균 rating 점수 조회에 실패했습니다." });
     } else {
-      const averageRating = results[0].averageRating;
+      const averageRating = parseInt(results[0].averageRating);
       console.log("평균 rating 점수 조회 성공: ", averageRating);
       res.status(200).json({ averageRating });
     }
@@ -179,6 +180,30 @@ app.get("/api/data", (req, res) => {
 
     // 조회 결과를 JSON 형태로 변환
     res.json(results);
+  });
+});
+
+app.get("/api/menu/:menuId", (req, res) => {
+  const { menuId } = req.params;
+
+  // 쿼리 실행
+  const query = `SELECT * FROM menus WHERE menu_id = ${menuId}`;
+
+  connection.query(query, (err, results) => {
+    if (err) {
+      console.error(err);
+      res.status(500).json({ error: "메뉴 정보 조회 실패" });
+      return;
+    }
+
+    if (results.length === 0) {
+      res.status(404).json({ error: "메뉴 정보가 없습니다" });
+      return;
+    }
+
+    // 조회 결과의 첫 번째 항목을 JSON 형태로 변환
+    const menuInfo = results[0];
+    res.json(menuInfo);
   });
 });
 
