@@ -160,6 +160,24 @@ app.get("/menu/:menuId/averageRating", (req, res) => {
   });
 });
 
+app.post("/menu/:menuId/ratings", (req, res) => {
+  const menuId = req.params.menuId;
+  const { rating } = req.body;
+
+  // rating을 DB에 저장하는 쿼리
+  const query = `INSERT INTO reviews (menu_id, rating) VALUES (?, ?)`;
+
+  connection.query(query, [menuId, rating], (err, results) => {
+    if (err) {
+      console.error("평점 저장 실패: ", err);
+      res.status(500).json({ error: "평점 저장에 실패했습니다." });
+    } else {
+      console.log("평점 저장 성공");
+      res.status(200).json({ message: "평점이 성공적으로 저장되었습니다." });
+    }
+  });
+});
+
 // 데이터조회 API
 app.get("/api/data", (req, res) => {
   const { category } = req.query;
